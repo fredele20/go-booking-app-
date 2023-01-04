@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"strings"
+	"booking-app/helper"
 )
 
 const conferenceTickets = 50
+
 var conferenceName = "Go Conference"
 var remainingTickets uint = 50
 var bookings = []string{}
@@ -16,7 +18,7 @@ func main() {
 
 	for {
 		firstName, lastName, email, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidUserTicketsNumber := validateUserInput(firstName, lastName, email, userTickets)
+		isValidName, isValidEmail, isValidUserTicketsNumber := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidUserTicketsNumber {
 			// call bookTicket here
@@ -26,8 +28,6 @@ func main() {
 			firstNames := getFirstNames()
 			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
-	
-				
 			if remainingTickets == 0 {
 				// end the program
 				fmt.Println("Conference is booked out. come back next year")
